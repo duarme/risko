@@ -1,11 +1,11 @@
 require 'csv'
 
-maxA = 40 # numero massimo armate in Attacco
-maxD = 40 # numero massimo armate in Difesa
+maxA = 30 # numero massimo armate in Attacco
+maxD = 30 # numero massimo armate in Difesa
 results = Array.new(maxA+1) { Array.new(maxD+1) }
 # @n esprime il numero di iterazioni per calcolare probabilità
 # più alto è @n, più è precisa la stima, più lento è il calcolo
-@n = 10000
+@n = 10000 # 1000000
 
 def ld # lancio dado
   rand(1..6)
