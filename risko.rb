@@ -42,7 +42,7 @@ end
 maxA.times do |a|
   maxD.times do |d|
     vA = 0 # contatore vittorie A
-    @n.times do
+    @n.times do |n|
       armateA = a + 1
       armateD = d + 1
       while (armateA > 0 && armateD > 0) do
@@ -53,9 +53,14 @@ maxA.times do |a|
         armateD = armateD - armate_perse[:D]
       end
       vA += 1 if armateA > 0
+      # saves time on almost deterministic games
+      if n > 1000 && vA <= 10 || n < 1000 && vA >= 990
+        results[d][a] = (vA/(n+1).to_f)
+        break
+      end
     end
-    results[a][d] = (vA/@n.to_f)
-    puts "[#{a}][#{d}]"
+    results[d][a] = (vA/@n.to_f) unless results[d][a]
+    puts "[#{d}][#{a}] => #{results[d][a]}"
   end
 end
 
