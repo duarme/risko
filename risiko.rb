@@ -14,9 +14,10 @@ end
 # armate_perse[:a] => armate perse dall'attacco
 # armate_perse[:d] => armate perse dalla difesa
 def calcola_perdite(dadiA, dadiD)
-  dadiA.sort!
-  dadiD.sort!
+  dadiA.sort!; dadiD.sort! # ordino i dadi lanciati da difesa e attacco per valore
   armate_perse = {a: 0, d: 0}
+  # confronto i dadi uno a uno partendo dai maggiori e li elimino
+  # finché ci sono dadi da confrontare
   while dadiA.length > 0 && dadiD.length > 0
     if dadiA.pop > dadiD.pop
       armate_perse[:d] += 1
