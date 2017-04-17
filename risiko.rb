@@ -9,17 +9,20 @@ def ld # lancio dado
   rand(1..6)
 end
 
-# calcola e restituisce le armate perse in un hash
+# Date le configurazioni dei dadi in attacco `dadiA` e dei dati in difesa `dadiD`,
+# restituisce le armate perse in un hash
 # armate_perse[:a] => armate perse dall'attacco
 # armate_perse[:d] => armate perse dalla difesa
 def calcola_perdite(dadiA, dadiD)
   dadiA.sort!
   dadiD.sort!
   armate_perse = {a: 0, d: 0}
-  if dadiA.last > dadiD.last
-    armate_perse[:d] += 1
-  else
-    armate_perse[:a] += 1
+  while dadiA.length > 0 && dadiD.length > 0
+    if dadiA.pop > dadiD.pop
+      armate_perse[:d] += 1
+    else
+      armate_perse[:a] += 1
+    end
   end
   return armate_perse
 end
